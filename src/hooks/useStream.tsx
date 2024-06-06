@@ -25,7 +25,7 @@ export const useStream = () => {
 	const getStream = () => {
 		console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
 		Promise.all([
-			navigator.mediaDevices.getUserMedia({ video: false,audio: true }),
+			navigator.mediaDevices.getUserMedia({ video: true,audio: true }),
 			// navigator.mediaDevices.getDisplayMedia({ audio: true }),
 		])
 			.then((results) => {
