@@ -26,7 +26,6 @@ export const useStream = () => {
 		console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
 		Promise.all([
 			navigator.mediaDevices.getUserMedia({ audio: true }),
-			navigator.mediaDevices.getUserMedia({ audio: true }),
 			navigator.mediaDevices.getDisplayMedia({ video: { displaySurface: 'monitor' }, audio: true }),
 		])
 			.then((results) => {
@@ -35,9 +34,6 @@ export const useStream = () => {
 				setUserStream(results[0]);
 				setDisplayStream(results[1]);
 				console.debug(`${LOG_PREFIX} Stream acquisition process completed.`);
-				console.log("results[0]",results[0]);
-				console.log("results[1]",results[1]);
-				console.log("results[3]",results[2]);
 			})
 			.catch((err) => {
 				console.debug(`${LOG_PREFIX} Could not get stream.`);
