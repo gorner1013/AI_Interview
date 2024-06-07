@@ -79,20 +79,20 @@ export default function Home() {
 	// 音声出力
 	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
 	// インタビュー
-	useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
-		setIsInterviewEnded(true);
-	});
+	// useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
+	// 	setIsInterviewEnded(true);
+	// });
 
-	useSub(PUB_SUB_EVENT.BACKGROUND, (data: WsMessage<string>) => {
-		setBgUrl(data.value);
-	});
-	useSub(PUB_SUB_EVENT.SCENE, (data: WsMessage<string>) => {
-		viewer.changeLayout(data.value);
-	});
-	useSub(PUB_SUB_EVENT.USER_INPUT, (data: boolean) => {
-		console.log("data", data)
-		setIsMakingSpeech(data);
-	});
+	// useSub(PUB_SUB_EVENT.BACKGROUND, (data: WsMessage<string>) => {
+	// 	setBgUrl(data.value);
+	// });
+	// useSub(PUB_SUB_EVENT.SCENE, (data: WsMessage<string>) => {
+	// 	viewer.changeLayout(data.value);
+	// });
+	// useSub(PUB_SUB_EVENT.USER_INPUT, (data: boolean) => {
+	// 	console.log("data", data)
+	// 	setIsMakingSpeech(data);
+	// });
 
 	const [bgurl, setBgUrl] = useState('/background.png');
 
