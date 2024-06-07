@@ -71,7 +71,7 @@ export default function Home() {
 	const [isInterviewEnded, setIsInterviewEnded] = useState(false);
 	const [isConnected, setIsConnected] = useState(false);
 	// マイク、ディスプレイのstream
-	// const { userStream, displayStream } = useStream();
+	const { userStream, displayStream } = useStream();
 	// 録画
 	// const { startRecording, stopRecording } = useRecording(jobApplicantKey as string,interviewUuid as string　, displayStream, userStream);
 	// 音声入力
@@ -96,7 +96,7 @@ export default function Home() {
 
 	return (
 		<div className={`${m_plus_2.variable} ${montserrat.variable}`}>
-			Hello1
+			Hello
 		</div>
 	);
 }
