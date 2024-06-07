@@ -73,7 +73,7 @@ export default function Home() {
 	// マイク、ディスプレイのstream
 	const { userStream, displayStream } = useStream();
 	// 録画
-	const { startRecording, stopRecording } = useRecording(jobApplicantKey as string,interviewUuid as string　, displayStream, userStream);
+	// const { startRecording, stopRecording } = useRecording(jobApplicantKey as string,interviewUuid as string　, displayStream, userStream);
 	// 音声入力
 	// useSpeechInput(userStream, isMakingSpeech);
 	// 音声出力
