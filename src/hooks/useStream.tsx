@@ -27,20 +27,20 @@ export const useStream = () => {
     Promise.all([
       navigator.mediaDevices.getUserMedia({ audio: true }),
       // navigator.mediaDevices.getUserMedia({ video:true, audio: true }),
-      navigator.mediaDevices.getDisplayMedia({
-        video: {displaySurface:'monitor'},audio: true
-      }),
+    //   navigator.mediaDevices.getDisplayMedia({
+    //     video: {displaySurface:'monitor'},audio: true
+    //   }),
 	  
     ])
       .then((results) => {
         // ディスプレイのシステム音声が許可されているか確認
         // if (results[0].getAudioTracks().length < 1) throw new Error('Display audio is not allowed.');
-        setUserStream(results[1]);
+        setUserStream(results[0]);
         // setDisplayStream(results[0]);
-        setDisplayStream(results[1]);
+        setDisplayStream(results[0]);
         console.debug(`${LOG_PREFIX} Stream acquisition process completed.`);
         console.log("results[0]", results[0]);
-        console.log("results[1]", results[1]);
+        console.log("results[1]", results[0]);
       })
       .catch((err) => {
         console.debug(`${LOG_PREFIX} Could not get stream.`);
