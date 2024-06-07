@@ -77,7 +77,7 @@ export default function Home() {
 	// 音声入力
 	useSpeechInput(userStream, isMakingSpeech);
 	// 音声出力
-	// const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
+	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
 	// // インタビュー
 	// useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
 	// 	setIsInterviewEnded(true);
@@ -114,7 +114,7 @@ export default function Home() {
 	const { connect, disconnect } = useWebsocket();
 
 	useEffect(() => {
-		console.log("11useEffect - isInterviewStarted:", isInterviewStarted);
+		console.log("1useEffect - isInterviewStarted:", isInterviewStarted);
 		console.log("useEffect - isConnected:", isConnected);
 		console.log("useEffect - webSocketUrl:", webSocketUrl);
 
