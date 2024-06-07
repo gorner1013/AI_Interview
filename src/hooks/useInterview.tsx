@@ -18,7 +18,6 @@ const LOG_PREFIX = '【Interview】';
 /** キャラクターの音声出力を処理 */
 export const useInterview = (
     isMakingSpeech: boolean,
-    startSpeaking: (stackMessage: StackMessage, onstart: () => void, onend: () => void) => void,
     startRecording: () => Promise<void>,
     stopRecording: () => void,
     onInterviewEnd: () => void

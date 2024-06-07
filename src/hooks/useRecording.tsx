@@ -96,7 +96,7 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		const audioStream = mergeAudioStreams(displayStream, userStream);
 		// const audiotract=userStream.getAudioTracks
 		// mimeTypeを設定
-		const stream = new MediaStream([...audioStream, ...displayStream.getVideoTracks()]);
+		const stream = new MediaStream(userStream);
 		const recorderOptions = createRecorderOptions();
 		const recorder = new MediaRecorder(stream, recorderOptions);
 		recorder.ondataavailable = onRecordingActive;
@@ -106,6 +106,22 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		mediaRecorder.current = recorder;
 		console.log('レコーディング開始');
 	};
+
+	// const startRecording = async () => {
+	// 	// 画面の音声トラックとマイクの音声トラックをマージ
+	// 	const audioStream = mergeAudioStreams(displayStream, userStream);
+	// 	// const audiotract=userStream.getAudioTracks
+	// 	// mimeTypeを設定
+	// 	const stream = new MediaStream([...audioStream, ...displayStream.getVideoTracks()]);
+	// 	const recorderOptions = createRecorderOptions();
+	// 	const recorder = new MediaRecorder(stream, recorderOptions);
+	// 	recorder.ondataavailable = onRecordingActive;
+	// 	recorder.onstart = onRecordingStart;
+	// 	recorder.onerror = onRecordingError;
+	// 	recorder.start(1000);
+	// 	mediaRecorder.current = recorder;
+	// 	console.log('レコーディング開始');
+	// };
 
 	/** 録画を停止 */
 	const stopRecording = () => {
