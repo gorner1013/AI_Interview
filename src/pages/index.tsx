@@ -79,9 +79,9 @@ export default function Home() {
 	// 音声出力
 	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
 	// // インタビュー
-	// useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
-	// 	setIsInterviewEnded(true);
-	// });
+	useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
+		setIsInterviewEnded(true);
+	});
 
 	useSub(PUB_SUB_EVENT.BACKGROUND, (data: WsMessage<string>) => {
 		setBgUrl(data.value);
@@ -114,7 +114,7 @@ export default function Home() {
 	const { connect, disconnect } = useWebsocket();
 
 	useEffect(() => {
-		console.log("1useEffect - isInterviewStarted:", isInterviewStarted);
+		console.log("110useEffect - isInterviewStarted:", isInterviewStarted);
 		console.log("useEffect - isConnected:", isConnected);
 		console.log("useEffect - webSocketUrl:", webSocketUrl);
 
