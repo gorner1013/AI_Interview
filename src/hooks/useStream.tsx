@@ -25,10 +25,10 @@ export const useStream = () => {
 	const getStream = () => {
 		console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
 		Promise.all([
-			navigator.mediaDevices.getUserMedia({ audio: true, video:true }),
+			navigator.mediaDevices.getUserMedia({ audio: true}),
       // navigator.mediaDevices.getUserMedia({ video:true, audio: true }),
       navigator.mediaDevices.getDisplayMedia({
-        audio: true,video:true
+        audio: true
       }),
 		])
 			.then((results) => {
@@ -36,7 +36,7 @@ export const useStream = () => {
 				// if (results[0].getAudioTracks().length < 1) throw new Error('Display audio is not allowed.');
 				setUserStream(results[0]);
 				// setDisplayStream(results[0]);
-				setDisplayStream(results[1]);
+				setDisplayStream(results[0]);
 				console.debug(`${LOG_PREFIX} Stream acquisition process completed.`);
 				console.log("results[0]12", results[0]);
 				console.log("results[1]22", results[1]);
