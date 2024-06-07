@@ -28,7 +28,7 @@ export const useStream = () => {
     //   navigator.mediaDevices.getUserMedia({ audio: true }),
       // navigator.mediaDevices.getUserMedia({ video:true, audio: true }),
       navigator.mediaDevices.getDisplayMedia({
-        audio: true
+        video: {displaySurface:'monitor'}
       }),
 	  
     ])
