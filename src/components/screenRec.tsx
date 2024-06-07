@@ -5,7 +5,7 @@ const Recorder: React.FC = () => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 
 	useEffect(() => {
-		getStream()
+		// getStream()
 	}, [])
 
 	const getStream = async () => {
