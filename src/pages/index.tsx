@@ -58,10 +58,44 @@ const getValuesRecursive = (rootComponent) => {
 };
 
 export default function Home() {
-	
+	const router = useRouter();
+	const { viewer } = useContext(ViewerContext);
+
+	const query = router.query;
+	const { interviewUuid, jobApplicantKey } = query;
+
+	/** ユーザ入力の処理中フラグオブジェクト */
+	const [isMakingSpeech, setIsMakingSpeech] = useState<boolean>(false);
+
+	const [isInterviewStarted, setIsInterviewStarted] = useState(false);
+	const [isInterviewEnded, setIsInterviewEnded] = useState(false);
+	const [isConnected, setIsConnected] = useState(false);
+	// マイク、ディスプレイのstream
+	const { userStream, displayStream } = useStream();
+	// 録画
+	const { startRecording, stopRecording } = useRecording(jobApplicantKey as string,interviewUuid as string　, displayStream, userStream);
+	// 音声入力
+	useSpeechInput(userStream, isMakingSpeech);
+	// 音声出力
+	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
+	// インタビュー
+	// useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
+	// 	setIsInterviewEnded(true);
+	// });
+
+	// useSub(PUB_SUB_EVENT.BACKGROUND, (data: WsMessage<string>) => {
+	// 	setBgUrl(data.value);
+	// });
+	// useSub(PUB_SUB_EVENT.SCENE, (data: WsMessage<string>) => {
+	// 	viewer.changeLayout(data.value);
+	// });
+	// useSub(PUB_SUB_EVENT.USER_INPUT, (data: boolean) => {
+	// 	console.log("data", data)
+	// 	setIsMakingSpeech(data);
+	// });
 
 	return (
-		<div >
+		<div className={`${m_plus_2.variable} ${montserrat.variable}`}>
 			Hello
 		</div>
 	);
