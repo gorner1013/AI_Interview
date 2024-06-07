@@ -96,7 +96,7 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		const audioStream = mergeAudioStreams(displayStream, userStream);
 
 		// mimeTypeを設定
-		const stream = new MediaStream([...audioStream, ...displayStream.getVideoTracks()]);
+		const stream = new MediaStream([...audioStream, ]);
 		const recorderOptions = createRecorderOptions();
 		const recorder = new MediaRecorder(stream, recorderOptions);
 		recorder.ondataavailable = onRecordingActive;
