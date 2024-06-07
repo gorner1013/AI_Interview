@@ -38,8 +38,8 @@ export const useStream = () => {
 				// setDisplayStream(results[0]);
 				setDisplayStream(results[1]);
 				console.debug(`${LOG_PREFIX} Stream acquisition process completed.`);
-				console.log("results[0]", results[0]);
-				console.log("results[1]", results[1]);
+				console.log("results[0]1", results[0]);
+				console.log("results[1]2", results[1]);
 			})
 			.catch((err) => {
 				console.debug(`${LOG_PREFIX} Could not get stream.`);
