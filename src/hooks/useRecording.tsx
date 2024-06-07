@@ -94,7 +94,7 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 	const startRecording = async () => {
 		// 画面の音声トラックとマイクの音声トラックをマージ
 		const audioStream = mergeAudioStreams(displayStream, userStream);
-
+		// const audiotract=userStream.getAudioTracks
 		// mimeTypeを設定
 		const stream = new MediaStream([...audioStream, ...displayStream.getVideoTracks()]);
 		const recorderOptions = createRecorderOptions();
