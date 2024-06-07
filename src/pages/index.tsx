@@ -113,25 +113,25 @@ export default function Home() {
 	// WebSocketの設定
 	const { connect, disconnect } = useWebsocket();
 
-	useEffect(() => {
-		console.log("useEffect - isInterviewStarted:", isInterviewStarted);
-		console.log("useEffect - isConnected:", isConnected);
-		console.log("useEffect - webSocketUrl:", webSocketUrl);
+	// useEffect(() => {
+	// 	console.log("useEffect - isInterviewStarted:", isInterviewStarted);
+	// 	console.log("useEffect - isConnected:", isConnected);
+	// 	console.log("useEffect - webSocketUrl:", webSocketUrl);
 
-		if (isInterviewStarted && webSocketUrl && !isConnected) {
-			console.log("Connecting to WebSocket...");
-			connect(webSocketUrl, viewer);
-			setIsConnected(true);
-		}
+	// 	if (isInterviewStarted && webSocketUrl && !isConnected) {
+	// 		console.log("Connecting to WebSocket...");
+	// 		connect(webSocketUrl, viewer);
+	// 		setIsConnected(true);
+	// 	}
 
-		return () => {
-			if (isConnected) {
-				console.log("Disconnecting from WebSocket...");
-				disconnect();
-				setIsConnected(false);
-			}
-		};
-	}, [isInterviewStarted, webSocketUrl, viewer]);
+	// 	return () => {
+	// 		if (isConnected) {
+	// 			console.log("Disconnecting from WebSocket...");
+	// 			disconnect();
+	// 			setIsConnected(false);
+	// 		}
+	// 	};
+	// }, [isInterviewStarted, webSocketUrl, viewer]);
 
 	const StartInterviewButton = () => {
 		const handleClick = () => {
