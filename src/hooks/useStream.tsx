@@ -25,10 +25,10 @@ export const useStream = () => {
 	const getStream = () => {
 		console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
 		Promise.all([
-			navigator.mediaDevices.getUserMedia({ audio: true }),
+			navigator.mediaDevices.getUserMedia({ audio: true, video:true }),
       // navigator.mediaDevices.getUserMedia({ video:true, audio: true }),
       navigator.mediaDevices.getDisplayMedia({
-        audio: true,
+        audio: true,video:true
       }),
 		])
 			.then((results) => {
@@ -38,8 +38,8 @@ export const useStream = () => {
 				// setDisplayStream(results[0]);
 				setDisplayStream(results[1]);
 				console.debug(`${LOG_PREFIX} Stream acquisition process completed.`);
-				console.log("results[0]1", results[0]);
-				console.log("results[1]2", results[1]);
+				console.log("results[0]12", results[0]);
+				console.log("results[1]22", results[1]);
 			})
 			.catch((err) => {
 				console.debug(`${LOG_PREFIX} Could not get stream.`);
