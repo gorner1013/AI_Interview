@@ -164,19 +164,7 @@ export default function Home() {
 
 	return (
 		<div className={`${m_plus_2.variable} ${montserrat.variable}`}>
-			{!isInterviewStarted && <StartInterviewButton />}
-			{isInterviewEnded && <InterviewEndMessage />}
-			<div className="absolute top-0 left-0 w-full h-full flex items-center">
-				<img src={bgurl} className="w-full" alt="" />
-			</div>
-			<div className="relative z-10">
-				<Meta />
-				<Menu />
-				{/* <VrmViewer /> */}
-			</div>
-			<div className="screenRec relative z-50">
-				<VideoRecorder />
-			</div>
+			Hello
 		</div>
 	);
 }
