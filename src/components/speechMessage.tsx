@@ -11,7 +11,7 @@ const SpeechRecognitionComponent: React.FC<SpeechRecognitionComponentProps> = ({
     const retryCountRef = useRef(0);
 
     const maxRetries = 5; //再接続可能数
-    const retryInterval = 30000; //再接続時のインターバル秒数
+    const retryInterval = 10000; //再接続時のインターバル秒数
 
     let isRunning = false; // recognitionが実行中かどうかを示す変数
 

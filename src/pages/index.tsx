@@ -80,7 +80,7 @@ export default function Home() {
 	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
 	// // インタビュー
 	useInterview(isMakingSpeech, startSpeaking, startRecording, stopRecording, () => {
-		setIsInterviewEnded(true);
+		setIsInterviewEnded(false);
 	});
 
 	useSub(PUB_SUB_EVENT.BACKGROUND, (data: WsMessage<string>) => {
@@ -114,7 +114,7 @@ export default function Home() {
 	const { connect, disconnect } = useWebsocket();
 
 	useEffect(() => {
-		console.log("110useEffect - isInterviewStarted:", isInterviewStarted);
+		console.log("11useEffect - isInterviewStarted:", isInterviewStarted);
 		console.log("useEffect - isConnected:", isConnected);
 		console.log("useEffect - webSocketUrl:", webSocketUrl);
 
