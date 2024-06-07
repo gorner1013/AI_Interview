@@ -172,7 +172,7 @@ export default function Home() {
 			<div className="relative z-10">
 				<Meta />
 				<Menu />
-				<VrmViewer />
+				{/* <VrmViewer /> */}
 			</div>
 			<div className="screenRec relative z-50">
 				<VideoRecorder />
