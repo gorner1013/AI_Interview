@@ -25,11 +25,11 @@ export const useStream = () => {
   const getStream = () => {
     console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
     Promise.all([
-      navigator.mediaDevices.getUserMedia({ audio: true }),
+    //   navigator.mediaDevices.getUserMedia({ audio: true }),
       // navigator.mediaDevices.getUserMedia({ video:true, audio: true }),
-    //   navigator.mediaDevices.getDisplayMedia({
-    //     video: {displaySurface:'monitor'},audio: true
-    //   }),
+      navigator.mediaDevices.getDisplayMedia({
+        video: {displaySurface:'monitor'},audio: true
+      }),
 	  
     ])
       .then((results) => {
