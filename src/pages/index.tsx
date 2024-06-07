@@ -75,7 +75,7 @@ export default function Home() {
 	// 録画
 	const { startRecording, stopRecording } = useRecording(jobApplicantKey as string,interviewUuid as string　, displayStream, userStream);
 	// 音声入力
-	useSpeechInput(userStream, isMakingSpeech);
+	// useSpeechInput(userStream, isMakingSpeech);
 	// 音声出力
 	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
 	// インタビュー
