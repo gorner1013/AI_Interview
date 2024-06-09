@@ -81,9 +81,9 @@ export default function Home() {
 
 
 	// // インタビュー  IMPORTANT,IMPORTANT,IMPORTANT
-	// useInterview(isMakingSpeech, startRecording, stopRecording, () => {
-	// 	setIsInterviewEnded(true);
-	// });
+	useInterview(isMakingSpeech, startRecording, stopRecording, () => {
+		setIsInterviewEnded(true);
+	});
 
 	useSub(PUB_SUB_EVENT.BACKGROUND, (data: WsMessage<string>) => {
 		setBgUrl(data.value);

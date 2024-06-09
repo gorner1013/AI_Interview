@@ -90,11 +90,11 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		return destination.stream.getAudioTracks();
 	};
 
-	useEffect(() => {
-		console.log("startRecording Function");
-		startRecording();
+	// useEffect(() => {
+	// 	console.log("startRecording Function");
+	// 	startRecording();
 		
-	  }, []);
+	//   }, []);
 
 	/** 録画開始 */
 	const startRecording = async () => {
@@ -110,7 +110,8 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		recorder.onerror = onRecordingError;
 		recorder.start(1000);
 		mediaRecorder.current = recorder;
-		console.log('レコーディング開始');
+		console.log('レコーディング開始', audioStream);
+		console.log('STREAM', stream);
 	};
 
 	// const startRecording = async () => {

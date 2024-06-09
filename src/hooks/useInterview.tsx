@@ -62,74 +62,74 @@ export const useInterview = (
         startRecording();
     }, [isInterviewStarted]);
 
-    useEffect(() => {
-        console.debug(`${LOG_PREFIX} インタビュー処理`);
-        console.debug(interviews);
+    // useEffect(() => {
+    //     console.debug(`${LOG_PREFIX} インタビュー処理`);
+    //     console.debug(interviews);
 
-        console.debug(`${LOG_PREFIX} Dependencies changed:`, { isMakingSpeech, isTimerEnd, interviews });
+    //     console.debug(`${LOG_PREFIX} Dependencies changed:`, { isMakingSpeech, isTimerEnd, interviews });
 
-        console.debug(`${LOG_PREFIX} isMakingSpeech:`, isMakingSpeech);
-        console.debug(`${LOG_PREFIX} isTimerEnd:`, isTimerEnd);
-        console.debug(`${LOG_PREFIX} interviews.length:`, interviews.length);
-
-
-        if (!isTimerEnd || !isInterviewStarted) {
-            console.debug(`${LOG_PREFIX} Skipping interview processing due to:`, {
-                isMakingSpeech,
-                isTimerEnd,
-                interviewsLength: interviews.length,
-            });
-
-            return;
-        }
-
-        if (interviews.length === 0 && isInterviewStarted && isTimerEnd) {
-            console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
-            stopRecording();
-            onInterviewEnd();
-            return;
-        }
+    //     console.debug(`${LOG_PREFIX} isMakingSpeech:`, isMakingSpeech);
+    //     console.debug(`${LOG_PREFIX} isTimerEnd:`, isTimerEnd);
+    //     console.debug(`${LOG_PREFIX} interviews.length:`, interviews.length);
 
 
+    //     if (!isTimerEnd || !isInterviewStarted) {
+    //         console.debug(`${LOG_PREFIX} Skipping interview processing due to:`, {
+    //             isMakingSpeech,
+    //             isTimerEnd,
+    //             interviewsLength: interviews.length,
+    //         });
+
+    //         return;
+    //     }
+
+    //     if (interviews.length === 0 && isInterviewStarted && isTimerEnd) {
+    //         console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
+    //         stopRecording();
+    //         onInterviewEnd();
+    //         return;
+    //     }
 
 
-        const interview = interviews[0];
-        console.debug(`${LOG_PREFIX} interviews[0]:`, interview);
 
-        console.debug(`${LOG_PREFIX} interview:`, interview);
-        if (!interview) {
-            console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
-            stopRecording();
-            onInterviewEnd();
-            return;
-        }
 
-        if (interview.id === currentInterviewId) {
-            console.debug(`${LOG_PREFIX} Interview already being played, skipping:`, interview);
-            return;
-        }
+    //     const interview = interviews[0];
+    //     console.debug(`${LOG_PREFIX} interviews[0]:`, interview);
 
-        console.debug(`${LOG_PREFIX} Next interview:`, interview);
-        publish(PUB_SUB_EVENT.ADD_CHAT_LOG, [
-            { role: MESSAGE_ROLE.ASSISTANT, content: interview.question, prompt: interview.prompt },
-        ]);
+    //     console.debug(`${LOG_PREFIX} interview:`, interview);
+    //     if (!interview) {
+    //         console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
+    //         stopRecording();
+    //         onInterviewEnd();
+    //         return;
+    //     }
 
-        const speakEndCallback = () => {
-            console.debug(`${LOG_PREFIX} Speaking ended, start countdown.`);
-            startCountDown(interview.time);
-            setInterviews(interviews.slice(1));
-            publish(PUB_SUB_EVENT.INTERVIEW_MESSAGE, interview);
-            setCurrentInterviewId(null);
-            currentInterview = interview;
-        }
-        const stackMessage: StackMessage = { id: interview.id, message: interview.question, koeiroData: interview.koeiroData, speakEndCallback: speakEndCallback };
-        console.debug(`${LOG_PREFIX} Start speaking:`, stackMessage);
-        currentInterview = interview;
-        setCurrentInterviewId(interview.id);
+    //     if (interview.id === currentInterviewId) {
+    //         console.debug(`${LOG_PREFIX} Interview already being played, skipping:`, interview);
+    //         return;
+    //     }
 
-        publish(PUB_SUB_EVENT.NEXT_INTERVIEW, stackMessage)
+    //     console.debug(`${LOG_PREFIX} Next interview:`, interview);
+    //     publish(PUB_SUB_EVENT.ADD_CHAT_LOG, [
+    //         { role: MESSAGE_ROLE.ASSISTANT, content: interview.question, prompt: interview.prompt },
+    //     ]);
 
-    }, [interviews, isTimerEnd, isMakingSpeech, currentInterviewId, isInterviewStarted]);
+    //     const speakEndCallback = () => {
+    //         console.debug(`${LOG_PREFIX} Speaking ended, start countdown.`);
+    //         startCountDown(interview.time);
+    //         setInterviews(interviews.slice(1));
+    //         publish(PUB_SUB_EVENT.INTERVIEW_MESSAGE, interview);
+    //         setCurrentInterviewId(null);
+    //         currentInterview = interview;
+    //     }
+    //     const stackMessage: StackMessage = { id: interview.id, message: interview.question, koeiroData: interview.koeiroData, speakEndCallback: speakEndCallback };
+    //     console.debug(`${LOG_PREFIX} Start speaking:`, stackMessage);
+    //     currentInterview = interview;
+    //     setCurrentInterviewId(interview.id);
+
+    //     publish(PUB_SUB_EVENT.NEXT_INTERVIEW, stackMessage)
+
+    // }, [interviews, isTimerEnd, isMakingSpeech, currentInterviewId, isInterviewStarted]);
 
     useEffect(() => {
         // インタビューの設問時間が終了したことを通知
