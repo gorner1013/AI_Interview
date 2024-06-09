@@ -109,25 +109,25 @@ export const useInterview = (
             return;
         }
 
-        // console.debug(`${LOG_PREFIX} Next interview:`, interview);
-        // publish(PUB_SUB_EVENT.ADD_CHAT_LOG, [
-        //     { role: MESSAGE_ROLE.ASSISTANT, content: interview.question, prompt: interview.prompt },
-        // ]);
+        console.debug(`${LOG_PREFIX} Next interview:`, interview);
+        publish(PUB_SUB_EVENT.ADD_CHAT_LOG, [
+            { role: MESSAGE_ROLE.ASSISTANT, content: interview.question, prompt: interview.prompt },
+        ]);
 
-        const speakEndCallback = () => {
-            console.debug(`${LOG_PREFIX} Speaking ended, start countdown.`);
-            startCountDown(interview.time);
-            setInterviews(interviews.slice(1));
-            publish(PUB_SUB_EVENT.INTERVIEW_MESSAGE, interview);
-            setCurrentInterviewId(null);
-            currentInterview = interview;
-        }
-        const stackMessage: StackMessage = { id: interview.id, message: interview.question, koeiroData: interview.koeiroData, speakEndCallback: speakEndCallback };
-        console.debug(`${LOG_PREFIX} Start speaking:`, stackMessage);
-        currentInterview = interview;
-        setCurrentInterviewId(interview.id);
+        // const speakEndCallback = () => {
+        //     console.debug(`${LOG_PREFIX} Speaking ended, start countdown.`);
+        //     startCountDown(interview.time);
+        //     setInterviews(interviews.slice(1));
+        //     publish(PUB_SUB_EVENT.INTERVIEW_MESSAGE, interview);
+        //     setCurrentInterviewId(null);
+        //     currentInterview = interview;
+        // }
+        // const stackMessage: StackMessage = { id: interview.id, message: interview.question, koeiroData: interview.koeiroData, speakEndCallback: speakEndCallback };
+        // console.debug(`${LOG_PREFIX} Start speaking:`, stackMessage);
+        // currentInterview = interview;
+        // setCurrentInterviewId(interview.id);
 
-        publish(PUB_SUB_EVENT.NEXT_INTERVIEW, stackMessage)
+        // publish(PUB_SUB_EVENT.NEXT_INTERVIEW, stackMessage)
 
     }, [interviews, isTimerEnd, isMakingSpeech, currentInterviewId, isInterviewStarted]);
 
