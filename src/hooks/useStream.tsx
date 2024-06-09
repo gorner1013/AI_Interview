@@ -36,7 +36,7 @@ export const useStream = () => {
       // promises.push(navigator.mediaDevices.getUserMedia({ video: true, audio: true }));
       promises.push(
         navigator.mediaDevices.getDisplayMedia({
-          video: { displaySurface: "monitor" },
+          
           audio: true,
         })
       );

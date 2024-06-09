@@ -93,16 +93,16 @@ export const useInterview = (
 
 
 
-        // const interview = interviews[0];
-        // console.debug(`${LOG_PREFIX} interviews[0]:`, interview);
+        const interview = interviews[0];
+        console.debug(`${LOG_PREFIX} interviews[0]:`, interview);
 
-        // console.debug(`${LOG_PREFIX} interview:`, interview);
-        // if (!interview) {
-        //     console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
-        //     stopRecording();
-        //     onInterviewEnd();
-        //     return;
-        // }
+        console.debug(`${LOG_PREFIX} interview:`, interview);
+        if (!interview) {
+            console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
+            stopRecording();
+            onInterviewEnd();
+            return;
+        }
 
         // if (interview.id === currentInterviewId) {
         //     console.debug(`${LOG_PREFIX} Interview already being played, skipping:`, interview);
