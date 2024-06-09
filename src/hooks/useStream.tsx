@@ -45,7 +45,7 @@ export const useStream = () => {
     if (isMobile) {
       promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
       promises.push(
-        navigator.mediaDevices.getDisplayMedia({
+        navigator.mediaDevices.getUserMedia({
           
           audio: true,
         })
