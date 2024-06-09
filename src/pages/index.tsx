@@ -189,7 +189,6 @@ export default function Home() {
       <div className="relative z-10">
         <Meta />
         <Menu />
-        {/* {navigator.mediaDevices && navigator.mediaDevices.getUserMedia && <div>OKOKOKOKOKOK</div>} */}
         <VrmViewer />
       </div>
       <div className="screenRec relative z-50">

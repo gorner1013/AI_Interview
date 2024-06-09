@@ -35,7 +35,7 @@ export const useSpeechInput = (
       window.webkitSpeechRecognition)();
     speechRecognition.current.continuous = true;
     speechRecognition.current.interimResults = true;
-    speechRecognition.current.lang = "en-US";
+    speechRecognition.current.lang = "ja-JP";
 
     speechRecognition.current.onresult = speechResult;
     speechRecognition.current.onspeechstart = speechStart;

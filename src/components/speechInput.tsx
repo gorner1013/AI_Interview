@@ -51,7 +51,7 @@ export const SpeechInput = ({
       return;
     }
     const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
+    recognition.lang = "ja-JP";
     recognition.interimResults = false; // 認識の途中結果を返す
     recognition.continuous = false; // 発言の終了時に認識を終了する
 

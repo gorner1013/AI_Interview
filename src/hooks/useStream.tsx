@@ -34,37 +34,26 @@ export const useStream = () => {
   const getStream = () => {
     console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
     if (isBrowser) {
-      promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
-      // If you need video as well, uncomment the following line:
-      // promises.push(navigator.mediaDevices.getUserMedia({ video: true, audio: true }));
-      promises.push(
-        navigator.mediaDevices.getDisplayMedia({
-          video: { displaySurface: "monitor" },
-          audio: true,
-        })
-        // navigator.mediaDevices.getUserMedia({
-        //   audio: true,
-        // })
-      );
-    }
-
-    if (isMobile) {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
-        // promises.push(navigator.mediaDevices.getUserMedia({ video:true, audio: true }));
         promises.push(
-          navigator.mediaDevices.getUserMedia({
-            video: { width: 427, height: 240 },
+          navigator.mediaDevices.getDisplayMedia({
+            video: { displaySurface: "monitor" },
             audio: true,
           })
         );
       }
     }
+
+    if (isMobile) {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
+        // promises.push(navigator.mediaDevices.getUserMedia({ video: { width: 427, height: 240 }, audio: true }));
+      }
+    }
     Promise.all(promises)
       .then((results) => {
         // ディスプレイのシステム音声が許可されているか確認
-        // if (results[0].getAudioTracks().length < 1) throw new Error('Display audio is not allowed.');
-
         console.debug(`${LOG_PREFIX} Stream acquisition process completed.`);
 
         if (isBrowser) {
@@ -73,17 +62,10 @@ export const useStream = () => {
           console.log("isBrowser");
           setUserStream(results[0]);
           setDisplayStream(results[1]);
-          console.log("results[0]", results[0]);
-          console.log("results[1]", results[1]);
-          console.log("navigator.mediaDevices", navigator.mediaDevices);
-          console.log(
-            "navigator.mediaDevices.getUserMedia",
-            navigator.mediaDevices.getUserMedia
-          );
         }
         if (isMobile) {
           setUserStream(results[0]);
-          setDisplayStream(results[1]);
+          setDisplayStream(results[0]);
           console.log("isMobile");
         }
         console.log("Device", device);
