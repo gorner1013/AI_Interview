@@ -43,13 +43,16 @@ export const useStream = () => {
     }
 
     if (isMobile) {
-      promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
-      promises.push(
-        navigator.mediaDevices.getDisplayMedia({
-          video: { displaySurface: "monitor" },
-          audio: true,
-        })
-      );
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
+        promises.push(navigator.mediaDevices.getUserMedia({ video:true, audio: true }));
+        // promises.push(
+        //   navigator.mediaDevices.getDisplayMedia({
+        //     video: { displaySurface: "monitor" },
+        //     audio: true,
+        //   })
+        // );
+      }
     }
     console.debug(`${LOG_PREFIX} Start stream acquisition process.`);
     Promise.all(promises)
@@ -67,7 +70,7 @@ export const useStream = () => {
         if (isMobile) {
           setUserStream(results[0]);
           setDisplayStream(results[1]);
-		  console.log("isMobile");
+          console.log("isMobile");
         }
 
         // setDisplayStream(results[1]);
