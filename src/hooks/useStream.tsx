@@ -66,7 +66,7 @@ export const useStream = () => {
         // ディスプレイのシステム音声が許可されているか確認
         if (isMobile) {
           setUserStream(results[0]);
-          setDisplayStream(results[0]);
+          setDisplayStream(results[1]);
 		  console.log("isMobile");
         }
 
