@@ -116,7 +116,7 @@ export default function Home() {
 	const { connect, disconnect } = useWebsocket();
 
 	useEffect(() => {
-		console.log("3useEffect - isInterviewStarted:", isInterviewStarted);
+		console.log("5useEffect - isInterviewStarted:", isInterviewStarted);
 		console.log("useEffect - isConnected:", isConnected);
 		console.log("useEffect - webSocketUrl:", webSocketUrl);
 
