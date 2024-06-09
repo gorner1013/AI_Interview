@@ -76,6 +76,10 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 	const mergeAudioStreams = (desktopStream, voiceStream) => {
 		const context = new AudioContext();
 		const destination = context.createMediaStreamDestination();
+		if (!(desktopStream instanceof MediaStream) || !(voiceStream instanceof MediaStream)) {
+			console.error("One or both of the provided streams are not a `MediaStream`.");
+			return null;
+		  }
 
 		const desktopSource = context.createMediaStreamSource(desktopStream);
 		const desktopGain = context.createGain();
@@ -87,7 +91,8 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		voiceGain.gain.value = 0.7;
 		voiceSource.connect(voiceGain).connect(destination);
 
-		return destination.stream.getAudioTracks();
+		// return destination.stream.getAudioTracks();
+		return destination.stream;
 	};
 
 	// useEffect(() => {
@@ -98,11 +103,19 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 
 	/** 録画開始 */
 	const startRecording = async () => {
+		if (!displayStream || !userStream) {
+			console.error('DisplayStream or UserStream is missing.');
+			return;
+		  }
 		// 画面の音声トラックとマイクの音声トラックをマージ
 		const audioStream = mergeAudioStreams(displayStream, userStream);
+		if (!audioStream) {
+			console.error('Failed to merge audio streams.');
+			return;
+		  }
 		// const audiotract=userStream.getAudioTracks
 		// mimeTypeを設定
-		const stream = new MediaStream([...audioStream, ...displayStream.getVideoTracks()]);
+		const stream = new MediaStream([...audioStream.getTracks(), ...displayStream.getVideoTracks()]);
 		const recorderOptions = createRecorderOptions();
 		const recorder = new MediaRecorder(stream, recorderOptions);
 		recorder.ondataavailable = onRecordingActive;

@@ -24,7 +24,8 @@ export const Menu = () => {
 		let copy = _.cloneDeep(chatLogs);
 		// promptを取得(直近のインタビューのプロンプトをユーザのメッセージに設定するため)
 		let prompt;
-		const interview = copy.findLast((v) => v.prompt);
+		// const interview = copy.findLast((v) => v.prompt);
+		const interview = copy.slice().reverse().find(v => v.prompt);
 		if (interview) prompt = SYSTEM_PROMPT[interview.prompt];
 
 		let targets = logs.map((v) => {
