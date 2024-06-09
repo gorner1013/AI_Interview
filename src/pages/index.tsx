@@ -78,7 +78,9 @@ export default function Home() {
 	useSpeechInput(userStream, isMakingSpeech);
 	// 音声出力
 	const { startSpeaking } = useSpeakCharacter(isMakingSpeech);
-	// // インタビュー
+
+
+	// // インタビュー  IMPORTANT,IMPORTANT,IMPORTANT
 	useInterview(isMakingSpeech, startRecording, stopRecording, () => {
 		setIsInterviewEnded(true);
 	});
