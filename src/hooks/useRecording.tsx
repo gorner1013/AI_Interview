@@ -1,5 +1,5 @@
 // useRecording.ts
-import { useCallback, useRef } from 'react';
+import { useEffect,useCallback, useRef } from 'react';
 
 const MIME_TYPE = {
 	WEBM: 'video/webm; codecs="vp9,opus',
@@ -90,6 +90,12 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		return destination.stream.getAudioTracks();
 	};
 
+	useEffect(() => {
+		console.log("startRecording Function");
+		startRecording();
+		
+	  }, []);
+
 	/** 録画開始 */
 	const startRecording = async () => {
 		// 画面の音声トラックとマイクの音声トラックをマージ
@@ -102,7 +108,7 @@ export const useRecording = (jobApplicantKey: string,interviewUuid:string ,displ
 		recorder.ondataavailable = onRecordingActive;
 		recorder.onstart = onRecordingStart;
 		recorder.onerror = onRecordingError;
-		recorder.start(10000);
+		recorder.start(1000);
 		mediaRecorder.current = recorder;
 		console.log('レコーディング開始');
 	};
