@@ -109,10 +109,10 @@ export const useInterview = (
             return;
         }
 
-        console.debug(`${LOG_PREFIX} Next interview:`, interview);
-        publish(PUB_SUB_EVENT.ADD_CHAT_LOG, [
-            { role: MESSAGE_ROLE.ASSISTANT, content: interview.question, prompt: interview.prompt },
-        ]);
+        // console.debug(`${LOG_PREFIX} Next interview:`, interview);
+        // publish(PUB_SUB_EVENT.ADD_CHAT_LOG, [
+        //     { role: MESSAGE_ROLE.ASSISTANT, content: interview.question, prompt: interview.prompt },
+        // ]);
 
         // const speakEndCallback = () => {
         //     console.debug(`${LOG_PREFIX} Speaking ended, start countdown.`);
