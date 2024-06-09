@@ -35,8 +35,8 @@ export const useStream = () => {
       // If you need video as well, uncomment the following line:
       // promises.push(navigator.mediaDevices.getUserMedia({ video: true, audio: true }));
       promises.push(
-        navigator.mediaDevices.getUserMedia({
-          
+        navigator.mediaDevices.getDisplayMedia({
+          video: { displaySurface: "monitor" },
           audio: true,
         })
       );
@@ -45,8 +45,8 @@ export const useStream = () => {
     if (isMobile) {
       promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
       promises.push(
-        navigator.mediaDevices.getUserMedia({
-          
+        navigator.mediaDevices.getDisplayMedia({
+          video: { displaySurface: "monitor" },
           audio: true,
         })
       );
