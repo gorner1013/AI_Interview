@@ -52,7 +52,12 @@ export const useStream = () => {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
         // promises.push(navigator.mediaDevices.getUserMedia({ video:true, audio: true }));
-        promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
+        promises.push(
+          navigator.mediaDevices.getUserMedia({
+            video: { width: 427, height: 240 },
+            audio: true,
+          })
+        );
       }
     }
     Promise.all(promises)
@@ -71,7 +76,10 @@ export const useStream = () => {
           console.log("results[0]", results[0]);
           console.log("results[1]", results[1]);
           console.log("navigator.mediaDevices", navigator.mediaDevices);
-          console.log("navigator.mediaDevices.getUserMedia", navigator.mediaDevices.getUserMedia);
+          console.log(
+            "navigator.mediaDevices.getUserMedia",
+            navigator.mediaDevices.getUserMedia
+          );
         }
         if (isMobile) {
           setUserStream(results[0]);
