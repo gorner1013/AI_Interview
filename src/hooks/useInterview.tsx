@@ -83,12 +83,12 @@ export const useInterview = (
             return;
         }
 
-        // if (interviews.length === 0 && isInterviewStarted && isTimerEnd) {
-        //     console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
-        //     stopRecording();
-        //     onInterviewEnd();
-        //     return;
-        // }
+        if (interviews.length === 0 && isInterviewStarted && isTimerEnd) {
+            console.debug(`${LOG_PREFIX} No more interviews, stop recording.`);
+            stopRecording();
+            onInterviewEnd();
+            return;
+        }
 
 
 
