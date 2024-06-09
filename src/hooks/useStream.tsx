@@ -52,7 +52,7 @@ export const useStream = () => {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
         // promises.push(navigator.mediaDevices.getUserMedia({ video:true, audio: true }));
-        promises.push(navigator.mediaDevices.getUserMedia({ video: true, audio: true }));
+        promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
       }
     }
     Promise.all(promises)
