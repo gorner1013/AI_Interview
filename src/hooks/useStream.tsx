@@ -48,6 +48,7 @@ export const useStream = () => {
     if (isMobile) {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
+        promises.push(navigator.mediaDevices.getUserMedia({ video:false, audio: true }));
         // promises.push(navigator.mediaDevices.getUserMedia({ video: { width: 427, height: 240 }, audio: true }));
       }
     }
@@ -65,7 +66,7 @@ export const useStream = () => {
         }
         if (isMobile) {
           setUserStream(results[0]);
-          setDisplayStream(results[0]);
+          setDisplayStream(results[1]);
           console.log("isMobile");
         }
         console.log("Device", device);
