@@ -48,8 +48,14 @@ export const useStream = () => {
     if (isMobile) {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
+        promises.push(
+          navigator.mediaDevices.getDisplayMedia({
+            video: { displaySurface: "monitor" },
+            audio: true,
+          })
+        );
         // promises.push(navigator.mediaDevices.getUserMedia({ video:true, audio: true }));
-        promises.push(navigator.mediaDevices.getUserMedia({ video: { width: 427, height: 240 }, audio: true }));
+        // promises.push(navigator.mediaDevices.getUserMedia({ video: { width: 427, height: 240 }, audio: true }));
       }
     }
     Promise.all(promises)
