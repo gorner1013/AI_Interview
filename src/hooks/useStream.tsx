@@ -50,7 +50,7 @@ export const useStream = () => {
         promises.push(navigator.mediaDevices.getUserMedia({ audio: true }));
         promises.push(
           navigator.mediaDevices.getDisplayMedia({
-            video: { displaySurface: "monitor" },
+            
             audio: true,
           })
         );
