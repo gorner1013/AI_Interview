@@ -70,9 +70,10 @@ export default function Home() {
   const [isInterviewStarted, setIsInterviewStarted] = useState(false);
   const [isInterviewEnded, setIsInterviewEnded] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const [countdown, setCountdown] = useState(10);
   // マイク、ディスプレイのstream
   const { userStream, displayStream } = useStream();
-  const [nav, setNav] = useState('');
+  const [nav, setNav] = useState("");
   // 録画
   const { startRecording, stopRecording } = useRecording(
     jobApplicantKey as string,
@@ -125,7 +126,7 @@ export default function Home() {
   const { connect, disconnect } = useWebsocket();
 
   useEffect(() => {
-    console.log("useEffect - isInterviewStarted:", isInterviewStarted);
+    console.log("1useEffect - isInterviewStarted:", isInterviewStarted);
     console.log("useEffect - isConnected:", isConnected);
     console.log("useEffect - webSocketUrl:", webSocketUrl);
 
@@ -143,6 +144,20 @@ export default function Home() {
       }
     };
   }, [isInterviewStarted, webSocketUrl, viewer]);
+
+  useEffect(() => {
+    if (isInterviewEnded && countdown > 0) {
+      const timer = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    } else if (isInterviewEnded && countdown === 0) {
+      window.location.href = `https://ats.skillbridge.co.jp/applicants/${jobApplicantKey}/finish`;
+    }
+  }, [isInterviewEnded, countdown, jobApplicantKey]);
 
   const StartInterviewButton = () => {
     const handleClick = () => {
@@ -162,18 +177,20 @@ export default function Home() {
       </div>
     );
   };
-//   useEffect(() => {
-//     console.log("navigator.mediaDevices", navigator.mediaDevices);
-//     // setNav(navigator.mediaDevices);
-// 	if(navigator.mediaDevices){console.log("OOOOOOOO")}
-// 	if(navigator.mediaDevices.getUserMedia){console.log("11111111")}
-//   }, []);
+  //   useEffect(() => {
+  //     console.log("navigator.mediaDevices", navigator.mediaDevices);
+  //     // setNav(navigator.mediaDevices);
+  // 	if(navigator.mediaDevices){console.log("OOOOOOOO")}
+  // 	if(navigator.mediaDevices.getUserMedia){console.log("11111111")}
+  //   }, []);
 
   const InterviewEndMessage = () => {
     return (
       <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
         <div className="text-white font-bold text-4xl">
           面接が終了しました。ありがとうございました。
+          <br />
+          画面が切り替わりますので少々お待ちください。
         </div>
       </div>
     );
